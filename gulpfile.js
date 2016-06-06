@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var connect = require('gulp-connect'); //Runs a local dev server
 var open = require('gulp-open'); //Open a URL in a web browser
 var browserify = require('browserify'); // Bundles JS
-var reactify = require('reactify');  // Transforms React JSX to JS
+var reactify = require('reactify'); // Transforms React JSX to JS
 var source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
 var concat = require('gulp-concat'); //Concatenates files
 var lint = require('gulp-eslint'); //Lint JS files, including JSX
@@ -16,9 +16,9 @@ var config = {
 		html: './src/*.html',
 		js: './src/**/*.js',
 		css: [
-      		'node_modules/bootstrap/dist/css/bootstrap.min.css',
-      		'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-    	],
+			'node_modules/bootstrap/dist/css/bootstrap.min.css',
+			'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+		],
 		dist: './dist',
 		mainJs: './src/main.js'
 	}
@@ -36,7 +36,9 @@ gulp.task('connect', function() {
 
 gulp.task('open', ['connect'], function() {
 	gulp.src('dist/index.html')
-		.pipe(open({ uri: config.devBaseUrl + ':' + config.port + '/'}));
+		.pipe(open({
+			uri: config.devBaseUrl + ':' + config.port + '/'
+		}));
 });
 
 gulp.task('html', function() {
@@ -63,7 +65,9 @@ gulp.task('css', function() {
 
 gulp.task('lint', function() {
 	return gulp.src(config.paths.js)
-		.pipe(lint({config: 'eslint.config.json'}))
+		.pipe(lint({
+			config: 'eslint.config.json'
+		}))
 		.pipe(lint.format());
 });
 
